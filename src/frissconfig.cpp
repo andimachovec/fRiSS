@@ -30,9 +30,9 @@ FrissConfig::FrissConfig(BMessage* archive)
 	const void* pColor = NULL;
 	ssize_t iSize = 0;
 	if (archive->FindData("ColBack", B_RGB_COLOR_TYPE, &pColor, &iSize) == B_OK)
-		memcpy(&col, pColor, iSize);
+		col = *(static_cast<const rgb_color*>(pColor));
 	if (archive->FindData("ColFore", B_RGB_COLOR_TYPE, &pColor, &iSize) == B_OK)
-		memcpy(&high, pColor, iSize);
+		high = *(static_cast<const rgb_color*>(pColor));
 
 	archive->FindInt32("BrowserType", (int32*)&BrowserType);
 	archive->FindString("BrowserMime", &BrowserMime);
